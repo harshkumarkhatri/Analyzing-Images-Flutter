@@ -89,14 +89,12 @@
 import json
 import boto3
 import base64
+import credentials
 
-ACCESS_KEY = "AKIA4OFZD2XGTLIAAW2R"
-SECRET_KEY = "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"
-
-s3 = boto3.client('s3',aws_access_key_id=ACCESS_KEY,
-                      aws_secret_access_key=SECRET_KEY)
-rekognition = boto3.client('rekognition', 'ap-south-1',aws_access_key_id=ACCESS_KEY,
-                      aws_secret_access_key=SECRET_KEY)
+s3 = boto3.client('s3',aws_access_key_id=credentials.ACCESS_KEY,
+                      aws_secret_access_key=credentials.SECRET_KEY)
+rekognition = boto3.client('rekognition', 'ap-south-1',aws_access_key_id=credentials.ACCESS_KEY,
+                      aws_secret_access_key=credentials.SECRET_KEY)
 
 def lambda_handler(event, context):
     name = event['name']

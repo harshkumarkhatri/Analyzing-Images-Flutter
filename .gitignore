@@ -45,3 +45,4 @@ app.*.map.json
 
 # File
 lib/credentials.dart
+lib/python package/credentials.py
