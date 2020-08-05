@@ -1,6 +1,10 @@
 # rekognition_with_s3_flutter
 
 A new Flutter project.
+api gateway:- cloud9-lambdahandler1 
+lambda function:- cloud9-lambdahandler1-lambdahandler1-1MD8MA33MDGAE
+Code for the lambda function is in cloud9 inside lambdahandler1
+
 
 ## Getting Started
 
