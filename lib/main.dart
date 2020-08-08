@@ -391,25 +391,30 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
     final String api_link =
         'https://ufbh6l57pc.execute-api.ap-south-1.amazonaws.com/test11-deployment-2-POST/geturl';
-    // String base64Image = base64Encode(file.readAsBytesSync()); 
+    // String base64Image = base64Encode(file.readAsBytesSync());
     // Uint8List base64ImageDecoded=base64Decode(base64Image);
 
     print("Printing url");
     print(imageUrl.toString());
 
-    http.post(api_link, body: 
-    jsonEncode(
-                <String, String>{"url": imageUrl,"name":filename})
-    ).then((res) {
+    http
+        .post(api_link,
+            body:
+                jsonEncode(<String, String>{"url": imageUrl, "name": filename}))
+        .then((res) {
       print(res.body);
-      data = (res.body);
-      // print(Type(data)
-      // for (var x in data) {
-      //   print(x["Name"]);
-      //   labels.add(x["Name"]);
-      // }
+      // data = (res.body);
+      // data = List.from(Map.from(json.decode(res.body))['body']['Labels']);
+      data = Map.from(json.decode(res.body))['body'];
+      data=data.toString().replaceAll("'", "\"");
+      data=List.from(Map.from(json.decode(data))["Labels"]);
+      print(data.runtimeType);
+      for (var x in data) {
+        print(x["Name"]);
+        labels.add(x["Name"]);
+      }
       setState(() {
-        dataToBeShown = data.toString();
+        dataToBeShown = labels.toString();
       });
       print(data.toString());
     });
