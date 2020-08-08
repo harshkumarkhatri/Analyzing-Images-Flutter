@@ -390,7 +390,7 @@ class _MyHomePageState extends State<MyHomePage> {
     var data;
     setState(() {});
     final String api_link =
-        'https://xd5b96ips6.execute-api.ap-south-1.amazonaws.com/Stage/hello';
+        'https://ufbh6l57pc.execute-api.ap-south-1.amazonaws.com/test11-deployment-2-POST/geturl';
     // String base64Image = base64Encode(file.readAsBytesSync()); 
     // Uint8List base64ImageDecoded=base64Decode(base64Image);
 
@@ -403,13 +403,14 @@ class _MyHomePageState extends State<MyHomePage> {
     ).then((res) {
       print(res.body);
       data = (res.body);
+      // print(Type(data)
       // for (var x in data) {
       //   print(x["Name"]);
       //   labels.add(x["Name"]);
       // }
-      // setState(() {
-      //   dataToBeShown = labels.toString();
-      // });
+      setState(() {
+        dataToBeShown = data.toString();
+      });
       print(data.toString());
     });
   }
@@ -460,7 +461,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               dataToBeShown,
-              style: Theme.of(context).textTheme.headline4,
+              // style: Theme.of(context).textTheme.headline4,
             ),
             Container(
               child: filename == '' ? upload_icon() : upload_button(),
