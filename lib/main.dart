@@ -297,24 +297,19 @@
 //   }
 // }
 
-import 'dart:typed_data';
+
+
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:cloudinary_client/cloudinary_client.dart';
-
-// ignore: unused_import
 import 'package:cloudinary_public/cloudinary_public.dart';
-// ignore: unused_import
 import 'package:loading/indicator.dart';
-// ignore: unused_import
 import 'package:loading/indicator/ball_pulse_indicator.dart';
-
 import 'package:cloudinary_client/models/CloudinaryResponse.dart' as cr;
 import 'dart:convert';
-// ignore: unused_import
 import 'package:loading/loading.dart';
 import 'credentials.dart' as cred;
 
@@ -355,23 +350,12 @@ class _MyHomePageState extends State<MyHomePage> {
 
   Future uploadImage() async {
     print("Starting uploading");
-    // var image = ImagePicker.pickImage(source: ImageSource.gallery);
-    // setState(() {
-    //   isLoading = true;
-    // });
-    // file = await ImagePicker.pickImage(source: ImageSource.gallery);
-    // if (file != null) {
-    //   setState(() {
-    //     filename = file.path.split('/').last;
-    //   });
-    // }
     cr.CloudinaryResponse response =
         await client.uploadImage(file.path, folder: 'new_floder 123');
     print(response.secure_url);
     setState(() {
       isLoading = false;
       imageUrl = response.secure_url;
-      // filename = file.path.split('/').last;
       uploadedImagee = Image.network(imageUrl);
     });
     print("Finished uploading");
@@ -391,9 +375,6 @@ class _MyHomePageState extends State<MyHomePage> {
     setState(() {});
     final String api_link =
         'https://ufbh6l57pc.execute-api.ap-south-1.amazonaws.com/test11-deployment-2-POST/geturl';
-    // String base64Image = base64Encode(file.readAsBytesSync());
-    // Uint8List base64ImageDecoded=base64Decode(base64Image);
-
     print("Printing url");
     print(imageUrl.toString());
 
@@ -403,8 +384,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 jsonEncode(<String, String>{"url": imageUrl, "name": filename}))
         .then((res) {
       print(res.body);
-      // data = (res.body);
-      // data = List.from(Map.from(json.decode(res.body))['body']['Labels']);
       data = Map.from(json.decode(res.body))['body'];
       data=data.toString().replaceAll("'", "\"");
       data=List.from(Map.from(json.decode(data))["Labels"]);
